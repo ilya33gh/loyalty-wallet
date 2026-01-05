@@ -16,3 +16,8 @@ Thumbs.db
 
 # Node (если есть)
 node_modules/
+
+# Database
+database/
+*.sqlite
+
