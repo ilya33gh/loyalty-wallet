@@ -11,6 +11,13 @@ import { initAddCardSubmit } from "./addCardSubmit.js";
 import { setSortMode, getSortMode, SORT_MODES } from './ui.js';
 import { applyColor } from "./cardView.js";
 
+const tg = window.Telegram.WebApp;
+
+tg.ready();
+tg.expand(); 
+
+console.log(tg.initDataUnsafe);
+
 let activeCard = null;
 
 export function setActiveCard(card) {

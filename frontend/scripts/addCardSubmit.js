@@ -49,7 +49,6 @@ export function initAddCardSubmit() {
             resetAddCardState();
             showView("list");
 
-            // 🔥 ВАЖНО: обновляем список
             await loadCards();
 
         } catch (e) {

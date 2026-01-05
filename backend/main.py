@@ -4,6 +4,7 @@ from fastapi.middleware.cors import CORSMiddleware
 from backend.database import engine
 from backend.models import Base
 from backend.routes.cards import router as cards_router
+from backend.routes.telegram import router as telegram_router
 
 app = FastAPI(title="Loyalty Wallet API")
 
@@ -21,6 +22,7 @@ app.add_middleware(
 Base.metadata.create_all(bind=engine)
 
 app.include_router(cards_router)
+app.include_router(telegram_router)
 
 
 @app.get("/")
