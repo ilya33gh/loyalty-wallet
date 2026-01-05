@@ -1,4 +1,4 @@
-alert("app.js loaded");
+document.body.style.border = "5px solid red";
 
 import { showView } from "./viewManager.js";
 import { fetchCards } from "./api.js";
