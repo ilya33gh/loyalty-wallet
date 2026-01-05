@@ -106,7 +106,7 @@ function getEmptyStateHtml(mode) {
 
 
 
-async function loadCards() {
+export async function loadCards() {
     cards = await fetchCards();
     updateView(getFilteredCards());
 }
