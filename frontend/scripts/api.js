@@ -1,11 +1,11 @@
-const API_URL = "http://127.0.0.1:8000";
+const API_URL = "/api";
 
 export async function fetchCards() {
     const response = await fetch(`${API_URL}/cards/`);
     return response.json();
 }
 
-//удаление
+// удаление
 export async function deleteCard(cardId) {
     const response = await fetch(
         `${API_URL}/cards/${cardId}`,
@@ -17,7 +17,7 @@ export async function deleteCard(cardId) {
     }
 }
 
-//изменение названия
+// изменение названия
 export async function updateCard(cardId, payload) {
     const response = await fetch(
         `${API_URL}/cards/${cardId}`,
@@ -52,5 +52,3 @@ export async function createCard(payload) {
 
     return response.json();
 }
-
-
