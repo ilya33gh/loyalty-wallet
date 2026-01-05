@@ -9,7 +9,10 @@ app = FastAPI(title="Loyalty Wallet API")
 
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["http://127.0.0.1:5500"],  # Live Server
+    allow_origins=[
+        "http://127.0.0.1:5500",        # dev
+        "https://cards.ilynoise.ru",    # prod
+    ],
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
