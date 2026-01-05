@@ -24,21 +24,21 @@ export function renderCode(container, type, value) {
     );
 
     try {
-        JsBarcode(svg, stringValue, {
-            format: mapBarcodeFormat(type),
+        JsBarcode(svg, value, {
+            format,
             displayValue: false,
             height: 60,
             margin: 0
         });
-
-        container.appendChild(svg);
     } catch (e) {
-        console.warn(
-            "Barcode render failed:",
-            type,
-            stringValue,
-            e
-        );
+        console.warn("Invalid barcode, fallback to CODE128", e);
+
+        JsBarcode(svg, value, {
+            format: "CODE128",
+            displayValue: false,
+            height: 60,
+            margin: 0
+        });
     }
 }
 

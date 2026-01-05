@@ -3,6 +3,8 @@ import { startInlineTitleEdit } from "./app.js";
 import { openColorPicker } from "./app.js";
 import { renderCode } from "./codeRenderer.js";
 import { copyToClipboard } from "./app.js";
+import { updateCard } from "./api.js";
+import { updateView } from "./app.js";
 
 
 export function renderCardView() {
@@ -69,4 +71,30 @@ renderCode(
             e.stopPropagation();
             startInlineTitleEdit(container);
         });
+}
+
+async function applyColor(newColor) {
+    const card = getActiveCard();
+    if (!card) return;
+
+    // 1️⃣ optimistic UI
+    card.color = newColor;
+    renderCardView();
+
+    try {
+        const updated = await updateCard(card.id, {
+            title: card.title,
+            color: newColor,
+            category: card.category,
+            code_type: card.code_type,
+            code_value: card.code_value
+        });
+
+        // 2️⃣ синхронизируем список
+        cards = cards.map(c => c.id === updated.id ? updated : c);
+        updateView(getFilteredCards());
+
+    } catch (e) {
+        console.error("Failed to update color", e);
+    }
 }

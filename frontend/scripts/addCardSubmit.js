@@ -2,6 +2,7 @@ import { getAddCardState, resetAddCardState } from "./addCardState.js";
 import { detectByValue } from "./codeDetector.js";
 import { createCard } from "./api.js";
 import { showView } from "./viewManager.js";
+import { loadCards } from "./app.js";
 
 export function initAddCardSubmit() {
     const btn = document.getElementById("save-card-btn");
@@ -47,6 +48,9 @@ export function initAddCardSubmit() {
 
             resetAddCardState();
             showView("list");
+
+            // 🔥 ВАЖНО: обновляем список
+            await loadCards();
 
         } catch (e) {
             console.error(e);
