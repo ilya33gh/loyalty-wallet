@@ -43,9 +43,14 @@ export function initAddCardForm() {
     });
 
     typeSelect.addEventListener("change", () => {
+        const value =
+            typeSelect.value === "upc"
+                ? "upca"
+                : typeSelect.value;
+
         setAddCardState({
-            codeType: typeSelect.value,
-            isManualCodeType: true   
+            codeType: value,
+            isManualCodeType: true
         });
     });
 
@@ -99,8 +104,13 @@ function syncUI(state) {
         categorySelect.value = state.category;
     }
 
-    if (typeSelect.value !== state.codeType) {
-        typeSelect.value = state.codeType;
+    const uiCodeType =
+        state.codeType === "upca"
+            ? "upc"
+            : state.codeType;
+
+    if (typeSelect.value !== uiCodeType) {
+        typeSelect.value = uiCodeType;
     }
 
     if (valueInput.value !== state.codeValue) {
