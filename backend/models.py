@@ -1,7 +1,7 @@
 from sqlalchemy import Column, Integer, String, DateTime, Boolean
 from datetime import datetime
 
-from database import Base
+from backend.database import Base
 
 
 class Card(Base):

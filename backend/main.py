@@ -1,9 +1,9 @@
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from database import engine
-from models import Base
-from routes.cards import router as cards_router
+from backend.database import engine
+from backend.models import Base
+from backend.routes.cards import router as cards_router
 
 app = FastAPI(title="Loyalty Wallet API")
 

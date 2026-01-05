@@ -1,7 +1,7 @@
 from sqlalchemy.orm import Session
 
-from models import Card
-from schemas import CardCreate, CardUpdate
+from backend.models import Card
+from backend.schemas import CardCreate, CardUpdate
 
 
 def create_card(db: Session, card: CardCreate):
