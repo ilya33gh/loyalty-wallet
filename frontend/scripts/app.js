@@ -37,7 +37,6 @@ let currentSearchQuery = "";
 
 let isEditingTitle = false;
 
-const tg = window.Telegram?.WebApp;
 //удалить в тг
 const DEV_THEMES = {
     light: {
