@@ -1,0 +1,99 @@
+/*bottom-sheet*/
+.add-card-menu .sheet-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+.add-card-menu .sheet-action {
+    font-size: 16px;
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.add-card-menu .icon {
+    width: 20px;
+    height: 20px;
+    fill: currentColor;
+    flex-shrink: 0;
+}
+
+#view-add .header h1 {
+    font-weight: 600;
+    font-size: 19px;
+}
+
+
+/*сканер*/
+.scanner-overlay {
+    position: fixed;
+    inset: 0;
+    background: black;
+    z-index: 1000;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.scanner-overlay video {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.scanner-close {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+    background: rgba(0,0,0,0.6);
+    color: white;
+    border: none;
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    font-size: 20px;
+}
+
+/* Secondary action — Ввести вручную */
+.add-card-menu .sheet-action.secondary {
+    background: var(--bg-secondary);
+    color: var(--text-main);
+    border: 2px solid var(--border-soft);
+}
+
+
+/* Иконка */
+.add-card-menu .sheet-action.secondary .icon {
+    opacity: 0.85;
+}
+
+/* Active / tap */
+.add-card-menu .sheet-action.secondary:active {
+    background: rgba(255, 255, 255, 0.12);
+}
+
+/* Анимация экрана добавления карты */
+.add-card-content {
+    transition: opacity 0.22s ease, transform 0.22s ease;
+}
+
+.add-card-content.animating-out {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.add-card-content.animating-in {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* ===== Sort sheet active state ===== */
+
+#sort-sheet .sheet-action.secondary.active {
+    background: var(--accent);
+    color: var(--button_text_color, #fff);
+    border-color: transparent;
+}
+
+

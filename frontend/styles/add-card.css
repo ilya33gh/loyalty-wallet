@@ -1,0 +1,77 @@
+.add-card-form {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+}
+
+.input-card {
+    background: var(--bg-secondary);
+    border-radius: 14px;
+    padding: 12px 14px;
+}
+
+/**/
+.input-card input,
+.input-card select {
+    width: 100%;
+    border: none;
+    background: transparent;
+    font-size: 16px;
+    color: var(--text-main);
+    outline: none;
+}
+
+.section-title {
+    font-size: 13px;
+    color: var(--text-secondary);
+    padding: 4px 4px 0;
+}
+
+.store-card .store-title {
+    font-weight: 600;
+}
+
+.color-swatch.selected {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+.save-btn {
+    background: none;
+    border: none;
+    padding: 6px;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.save-btn:disabled {
+    cursor: default;
+}
+
+.save-icon {
+    fill: #b0b0b0; /* блеклый серый */
+    transition: fill 0.2s ease;
+    width: 20px;
+    height: 20px;
+}
+
+.save-btn.enabled .save-icon {
+    fill: var(--accent);
+}
+
+.add-card-content {
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.add-card-content.animating-out {
+    opacity: 0;
+    transform: translateY(6px);
+}
+
+.add-card-content.animating-in {
+    opacity: 1;
+    transform: translateY(0);
+}
