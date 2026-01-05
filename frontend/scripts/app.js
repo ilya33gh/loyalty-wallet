@@ -1,5 +1,3 @@
-document.body.style.border = "5px solid red";
-
 import { showView } from "./viewManager.js";
 import { fetchCards } from "./api.js";
 import { renderCardTiles } from "./ui.js";
@@ -13,7 +11,13 @@ import { initAddCardSubmit } from "./addCardSubmit.js";
 import { setSortMode, getSortMode, SORT_MODES } from './ui.js';
 import { applyColor } from "./cardView.js";
 
-const tg = window.Telegram.WebApp;
+var tg = null;
+
+if (window.Telegram && window.Telegram.WebApp) {
+    tg = window.Telegram.WebApp;
+    tg.ready();
+    tg.expand();
+}
 
 tg.ready();
 tg.expand(); 
@@ -273,12 +277,11 @@ categoryTabs.addEventListener("click", (e) => {
 
 //тема
 function applyTelegramTheme() {
-    const tg = window.Telegram?.WebApp;
-    if (!tg || !tg.themeParams) return;
+    if (!window.Telegram || !window.Telegram.WebApp) return;
 
-    const p = tg.themeParams;
-
-    console.log("Applying theme:", tg.colorScheme, p);
+    var tg = window.Telegram.WebApp;
+    var p = tg.themeParams;
+    if (!p) return;
 
     document.documentElement.style.setProperty("--bg-main", p.bg_color);
     document.documentElement.style.setProperty("--bg-secondary", p.secondary_bg_color);
@@ -286,6 +289,7 @@ function applyTelegramTheme() {
     document.documentElement.style.setProperty("--text-secondary", p.hint_color);
     document.documentElement.style.setProperty("--accent", p.button_color);
 }
+
 
 applyTelegramTheme();
 
