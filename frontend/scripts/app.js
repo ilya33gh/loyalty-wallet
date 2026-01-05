@@ -386,11 +386,12 @@ function openFullscreenCard() {
 
     fullscreenContent.appendChild(codeBox);
 
-    renderCode(
-        codeBox,
-        card.code_type,
-        card.code_value
-    );
+    const safeType =
+        card.code_type === "auto"
+            ? "code128"
+            : card.code_type;
+
+    renderCode(codeBox, safeType, card.code_value);
 
     fullscreen.classList.remove("hidden");
 

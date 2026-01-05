@@ -23,8 +23,10 @@ export function renderCode(container, type, value) {
         "svg"
     );
 
+    const format = mapBarcodeFormat(type);
+
     try {
-        JsBarcode(svg, value, {
+        JsBarcode(svg, stringValue, {
             format,
             displayValue: false,
             height: 60,
@@ -33,26 +35,26 @@ export function renderCode(container, type, value) {
     } catch (e) {
         console.warn("Invalid barcode, fallback to CODE128", e);
 
-        JsBarcode(svg, value, {
+        JsBarcode(svg, stringValue, {
             format: "CODE128",
             displayValue: false,
             height: 60,
             margin: 0
         });
     }
+
+    container.appendChild(svg);
 }
 
 function mapBarcodeFormat(type) {
     switch (type) {
-        case "ean13":
-            return "EAN13";
-        case "ean8":
-            return "EAN8";
-        case "upc":
-            return "UPC";
+        case "ean13": return "EAN13";
+        case "ean8":  return "EAN8";
+        case "upca":  return "UPC";
         case "code128":
-            return "CODE128";
         default:
             return "CODE128";
     }
 }
+
+

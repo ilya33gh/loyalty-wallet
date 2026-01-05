@@ -5,6 +5,7 @@ import { renderCode } from "./codeRenderer.js";
 import { copyToClipboard } from "./app.js";
 import { updateCard } from "./api.js";
 import { loadCards } from "./app.js";
+import { setActiveCard } from "./app.js";
 
 
 export function renderCardView() {
@@ -50,11 +51,11 @@ export function renderCardView() {
     const codeContainer =
     container.querySelector(".code-container");
 
-renderCode(
-    codeContainer,
-    card.code_type,
-    card.code_value
-);
+const safeType = card.code_type === "auto"
+    ? "code128"
+    : card.code_type;
+
+renderCode(codeContainer, safeType, card.code_value);
 
 
 
@@ -73,27 +74,27 @@ renderCode(
         });
 }
 
-async function applyColor(newColor) {
+export async function applyColor(newColor) {
     const card = getActiveCard();
     if (!card) return;
 
-    // optimistic UI (для текущей карточки)
     card.color = newColor;
     renderCardView();
 
     try {
-        await updateCard(card.id, {
-            title: card.title,
-            color: newColor,
-            category: card.category,
-            code_type: card.code_type,
-            code_value: card.code_value
-        });
+        const saved = await updateCard(card.id, {
+        title: card.title,
+        color: newColor,
+        category: card.category,
+        code_type: card.code_type,
+        code_value: card.code_value
+    });
 
-        // 🔥 ВАЖНО: перезагружаем список целиком
-        await loadCards();
+    setActiveCard(saved);
+    await loadCards();
 
     } catch (e) {
         console.error("Failed to update color", e);
     }
 }
+

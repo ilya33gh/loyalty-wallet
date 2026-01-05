@@ -61,7 +61,7 @@ export function initAddCardForm() {
 
         // автоопределение работает, пока тип не выбран вручную
         if (!current.isManualCodeType) {
-            const detected = detectValidCodeType(value);
+            const detected = detectByValue(value);
 
             if (detected && detected !== current.codeType) {
                 setAddCardState({
@@ -89,15 +89,6 @@ export function initAddCardForm() {
         });
     });
 }
-
-function detectValidCodeType(value) {
-    if (/^\d{13}$/.test(value)) return "ean13";
-    if (/^\d{8}$/.test(value))  return "ean8";
-    if (/^\d{12}$/.test(value)) return "upc";
-    if (value.length > 20)      return "qr";
-    return null;
-}
-
 
 function syncUI(state) {
     if (titleInput.value !== state.title) {
