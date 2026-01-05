@@ -9,6 +9,7 @@ import { openAddCardMenu } from "./addCardMenu.js";
 import { initAddCardForm } from "./addCardForm.js";
 import { initAddCardSubmit } from "./addCardSubmit.js";
 import { setSortMode, getSortMode, SORT_MODES } from './ui.js';
+import { applyColor } from "./cardView.js";
 
 let activeCard = null;
 
@@ -344,6 +345,19 @@ function closeColorPicker() {
         backdrop.classList.add("hidden");
     }, 250);
 }
+
+// выбор цвета
+colorSheet.addEventListener("click", (e) => {
+    const swatch = e.target.closest(".color-swatch");
+    if (!swatch) return;
+
+    const color = swatch.dataset.color;
+    if (!color) return;
+
+    closeColorPicker();
+    applyColor(color);
+});
+
 
 sheet.addEventListener("click", (e) => {
     const btn = e.target.closest("[data-action]");
