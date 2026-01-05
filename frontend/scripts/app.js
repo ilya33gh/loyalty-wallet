@@ -1,3 +1,5 @@
+alert("app.js loaded");
+
 import { showView } from "./viewManager.js";
 import { fetchCards } from "./api.js";
 import { renderCardTiles } from "./ui.js";
